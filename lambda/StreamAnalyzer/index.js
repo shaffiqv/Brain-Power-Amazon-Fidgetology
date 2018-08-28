@@ -32,6 +32,8 @@ exports.handler = (event, context, callback) => {
         processDetectedFace(detectedFace, record.data.InputInformation.KinesisVideo); 
     }); 
  
+ 
+    // Main function starts 
     // Estimate rotational and translational velocities 
     // of faces in successive frames using basic first-order derivative approximation. 
     var previousFace = faceRecords[0].data.FaceSearchResponse[0].DetectedFace; 
