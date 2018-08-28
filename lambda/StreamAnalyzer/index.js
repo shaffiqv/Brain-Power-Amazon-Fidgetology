@@ -6,7 +6,8 @@
 const aws = require('aws-sdk'); 
 aws.config.update({ region: process.env.AWS_REGION }); 
 const kinesis = new aws.Kinesis(); 
- 
+
+// AWS Function 
 // This function is triggered when new raw records are available 
 // from the output of Rekognition stream processor. 
 // For data specification, see: https://docs.aws.amazon.com/rekognition/latest/dg/streaming-video-kinesis-output.html 
@@ -31,9 +32,11 @@ exports.handler = (event, context, callback) => {
         detectedFace.RecordIndex = index; 
         processDetectedFace(detectedFace, record.data.InputInformation.KinesisVideo); 
     }); 
+	
+	// add more function here
  
  
-    // Main function starts 
+    // Computational Function
     // Estimate rotational and translational velocities 
     // of faces in successive frames using basic first-order derivative approximation. 
     var previousFace = faceRecords[0].data.FaceSearchResponse[0].DetectedFace; 
